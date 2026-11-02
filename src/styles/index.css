@@ -1,0 +1,64 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+  --noir: #0a0a0b;
+  --acid: #c8ff1a;
+}
+
+html { background: var(--noir); -webkit-text-size-adjust: 100%; }
+body {
+  @apply bg-noir font-sans text-bone antialiased;
+}
+::selection { background: var(--acid); color: var(--noir); }
+:focus-visible { outline: 2px solid var(--acid); outline-offset: 4px; }
+
+.display-xl { font-size: clamp(4.5rem, 19vw, 20rem); line-height: .82; letter-spacing: -0.06em; }
+.display-lg { font-size: clamp(3rem, 9vw, 9rem); line-height: .9; letter-spacing: -0.045em; }
+.display-md { font-size: clamp(2.25rem, 5vw, 5rem); line-height: .98; letter-spacing: -0.035em; }
+.body-lg { font-size: clamp(1.05rem, 1.4vw, 1.3rem); line-height: 1.55; }
+.label { font-size: .75rem; letter-spacing: .14em; text-transform: uppercase; color: #8e9199; }
+
+.grain::after {
+  content: "";
+  position: fixed; inset: 0; pointer-events: none; z-index: 1;
+  opacity: .05;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+}
+
+.link-underline {
+  background: linear-gradient(currentColor, currentColor) no-repeat right bottom / 0 1px;
+  transition: background-size .5s cubic-bezier(.2,.7,.1,1);
+}
+.link-underline:hover, .link-underline:focus-visible {
+  background-position: left bottom; background-size: 100% 1px;
+}
+
+.reveal-frame { clip-path: inset(0 0 0 0); transition: clip-path .9s cubic-bezier(.7,0,.2,1); }
+.reveal-frame > * { transition: transform 1.2s cubic-bezier(.2,.7,.1,1); }
+.group:hover .reveal-frame > * { transform: scale(1.06); }
+
+.cursor-dot, .cursor-ring { pointer-events: none; position: fixed; top: 0; left: 0; z-index: 9999; border-radius: 9999px; }
+.cursor-dot { width: 6px; height: 6px; margin: -3px 0 0 -3px; background: var(--acid); }
+.cursor-ring { width: 44px; height: 44px; margin: -22px 0 0 -22px; border: 1px solid rgba(200,255,26,.6); transition: width .35s, height .35s, margin .35s, background-color .35s; }
+.cursor-ring.is-hover { width: 84px; height: 84px; margin: -42px 0 0 -42px; background: rgba(200,255,26,.12); }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
+}
+
+/* Cursor personalizado ativo somente em desktop */
+.has-custom-cursor, .has-custom-cursor * { cursor: none !important; }
+
+/* Revelação de imagem no hover da lista da home (desktop) */
+.hover-preview { clip-path: inset(0 0 100% 0); transition: clip-path .75s cubic-bezier(.7,0,.2,1); }
+.group:hover .hover-preview, .group:focus-visible .hover-preview { clip-path: inset(0 0 0 0); }
+
+/* Faixa de clientes: rolagem contínua, estática para reduced motion */
+.marquee-track { display: flex; width: max-content; animation: marquee 38s linear infinite; }
+@keyframes marquee { from { transform: translate3d(0,0,0); } to { transform: translate3d(-50%,0,0); } }
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track { animation: none; }
+}
