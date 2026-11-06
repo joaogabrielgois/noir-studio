@@ -4,7 +4,7 @@ import { useGSAP } from "@gsap/react";
 import { gsap } from "../lib/gsap";
 import { hero, projects, services, site } from "../config/site";
 import SEO from "../components/SEO";
-import HeroOrb from "../components/HeroOrb";
+import heroPhoto from "./noir-hero.jpg";
 import Magnetic from "../components/Magnetic";
 import Reveal from "../components/Reveal";
 import Artwork from "../components/Artwork";
@@ -32,11 +32,8 @@ export default function Home() {
       <SEO title={site.name} path="/" />
 
       <section className="relative flex min-h-dvh flex-col justify-end overflow-hidden px-5 pb-10 pt-32 md:px-10">
-        <div className="pointer-events-none absolute inset-0 flex items-center justify-end pr-[2vw] md:pr-[6vw]">
-          <div className="w-[min(92vw,640px)] opacity-90">
-            <HeroOrb />
-          </div>
-        </div>
+        <img src={heroPhoto} alt="" fetchPriority="high" className="pointer-events-none absolute inset-0 h-full w-full object-cover object-center opacity-55" />
+        <div aria-hidden="true" className="pointer-events-none absolute inset-0 bg-gradient-to-t from-noir via-noir/55 to-transparent" />
 
         <div className="relative z-10">
           <p data-fade className="label mb-8">{hero.eyebrow}</p>
