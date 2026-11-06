@@ -1,8 +1,8 @@
 /**
  * Conteúdo editável do site. Todo texto do NOIR STUDIO vem daqui.
  * ATENÇÃO: clientes, equipe, números e depoimentos são FICTÍCIOS (demonstração).
- * As imagens dos projetos são renders 3D originais, gerados por scripts/render-art.py
- * e convertidos por scripts/optimize-art.mjs. Não são fotografias de clientes reais.
+ * As imagens dos projetos são composições conceituais geradas com IA
+ * e otimizadas em AVIF e WebP. Não são fotografias de clientes reais.
  */
 
 /** Nome base dos arquivos em public/images/projects, na ordem das variantes de arte (0–5). */
